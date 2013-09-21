@@ -222,7 +222,6 @@ argon.workspace.guessType = function(name){
 argon.workspace.file = function(name, path, content, type){
   this.name    = name;
   this.path    = path;
-  this.content = content;
   this.dirty   = false;
   this.handle  = document.createElement("li");
   this.handle.innerText  = name;
@@ -232,11 +231,7 @@ argon.workspace.file = function(name, path, content, type){
   this.type = type;
   this.session = argon.editor.createSession(content, type);
 };
-argon.workspace.file.prototype.getContent = function(){
-  if(argon.workspace.currentFile == this)
-    this.content = argon.editor.getText();
-  return this.content;
-};
+argon.workspace.file.prototype.getContent  = function()   { return this.session.getValue();   };
 argon.workspace.file.prototype.close       = function()   { argon.workspace.close(this);      };
 argon.workspace.file.prototype.save        = function()   { argon.menu.file_save(this);       };
 argon.workspace.file.prototype.delete      = function()   { argon.menu.file_delete(this);     };
