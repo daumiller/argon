@@ -3,7 +3,7 @@ argon
 personal online source editor
 some features implemented, and more planned, for perl IDE
 
-build with
+built with
 ----------
 * [Ace editor](http://ace.c9.io/)
 * [jQuery UI](http://jqueryui.com/)
