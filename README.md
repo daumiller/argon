@@ -1,9 +1,7 @@
 argon
 =====
-
-personal online source editor
-
-some features implemented, and more planned, for perl IDE
+* personal online source editor
+* some features implemented, and more planned, for perl IDE
 
 built with
 ----------
@@ -13,3 +11,7 @@ built with
 looks like
 ----------
 ![](https://raw.github.com/daumiller/argon/master/screenshot.png)
+
+notes
+-----
+* there are some seriously exploitable/unsanitized cgi methods exposed as-is
