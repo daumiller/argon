@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>argon</title>
+  <link rel="stylesheet" href="/css/jquery-ui/jquery-ui.css">
+  <link rel="stylesheet" href="/css/argon.css">
+  <script src="/js/jquery.js"></script>
+  <script src="/js/jquery-ui.js"></script>
+  <script src="/js/ace/ace.js" charset="utf-8"></script>
+  <script src="/js/extensions.js"        charset="utf-8"></script>
+  <script src="/js/argon.js"             charset="utf-8"></script>
+  <script src="/js/argon.menu.js"        charset="utf-8"></script>
+  <script src="/js/argon.workspace.js"   charset="utf-8"></script>
+  <script src="/js/argon.fileDialog.js"  charset="utf-8"></script>
+  <script src="/js/argon.editor.js"      charset="utf-8"></script>
+  <script src="/js/argon.preferences.js" charset="utf-8"></script>
+  <script src="/js/argon.debug.js"       charset="utf-8"></script>
+  <script>$(argon.init);</script>
+</head>
+<body>
+  <div id="argonMenu">
+    <ul class="argonMenuList" id="argonMenuMain">
+      <li>Workspace</li>
+      <li>File</li>
+      <li>Language</li>
+      <li>Preferences</li>
+      <li>Debug</li>
+    </ul>
+    <ul class="argonMenuFloat" id="argonMenuWorkspace">
+      <li>New Workspace</li>
+      <li>Open Workspace</li>
+      <li>Save Workspace</li>
+      <li>Save All Files (Cmd+E)</li>
+    </ul>
+    <ul class="argonMenuFloat" id="argonMenuFile">
+      <li>New    (Cmd+N)</li>
+      <li>Open   (Cmd+O)</li>
+      <li>Save   (Cmd+S)</li>
+      <li>Save As</li>
+      <li>Close  (Cmd+W)</li>
+      <li>Rename</li>
+      <li>Delete</li>
+      <li>Create Directory</li>
+      <li>Delete Directory</li>
+    </ul>
+    <ul class="argonMenuFloat" id="argonMenuLanguage">
+      <li class="argonMenuChecked">text</li>
+      <li>assembly_x86</li>
+      <li>autohotkey</li>
+      <li>batchfile</li>
+      <li>c_cpp</li>
+      <li>csharp</li>
+      <li>css</li>
+      <li>diff</li>
+      <li>dot</li>
+      <li>golang</li>
+      <li>html</li>
+      <li>ini</li>
+      <li>java</li>
+      <li>javascript</li>
+      <li>json</li>
+      <li>lua</li>
+      <li>makefile</li>
+      <li>markdown</li>
+      <li>objectivec</li>
+      <li>perl</li>
+      <li>php</li>
+      <li>sh</li>
+      <li>sql</li>
+      <li>mysql</li>
+      <li>vbscript</li>
+      <li>verilog</li>
+      <li>xml</li>
+    </ul>
+    <ul class="argonMenuFloat" id="argonMenuDebug">
+      <li>Compile (Cmd+K)</li>
+      <li>Run</li>
+    </ul>
+  </div>
+  <div id="argonWorkspace">
+    <div id="argonWorkspaceContent"><ul id="argonWorkspaceList"></ul></div>
+    <div id="argonWorkspaceCollapser"></div>
+  </div>
+  <div id="argonEditor"></div>
+  <div id="argonFileDialog">
+    <span><ul id="argonFileCrumbs"></ul></span>
+    <table id="argonFileTable"><tbody id="argonFileBody"></tbody></table>
+    <input type="text" id="argonFileName"></input>
+  </div>
+  <div id="argonPrefsDialog">
+    <table id="argonPrefsTable"><tbody>
+      <tr><th>Workspace Side     </th><td><input type="radio" name="prefsWorkspaceSide" id="prefsWorkspaceSideLeft" >left </input>
+                                          <input type="radio" name="prefsWorkspaceSide" id="prefsWorkspaceSideRight">right</input></td></tr>
+      <tr><th>Workspace Width    </th><td><input type="text"  id="prefsWorkspaceWidth"></input></td></tr>
+      <tr><th>Workspace Collapsed</th><td><input type="radio" name="prefsWorkspaceCollapsed" id="prefsWorkspaceCollapsedTrue" >true </input>
+                                          <input type="radio" name="prefsWorkspaceCollapsed" id="prefsWorkspaceCollapsedFalse">false</input></td></tr>
+      <tr><th>Menu Side          </th><td><input type="radio" name="prefsMenuSide" id="prefsMenuSideTop"   >top   </input>
+                                          <input type="radio" name="prefsMenuSide" id="prefsMenuSideBottom">bottom</input></td></tr>
+      <tr><th>Editor Theme       </th><td><input type="text"  id="prefsEditorTheme"></input></td></tr>
+      <tr><th>Editor Tab Size    </th><td><input type="text"  id="prefsEditorTabSize"></input></td></tr>
+      <tr><th>Editor Soft Tabs   </th><td><input type="radio" name="prefsEditorSoftTabs" id="prefsEditorSoftTabsTrue" >true </input>
+                                          <input type="radio" name="prefsEditorSoftTabs" id="prefsEditorSoftTabsFalse">false</input></td></tr>
+      <tr><th>Editor Ruler Show  </th><td><input type="radio" name="prefsEditorRulerShow" id="prefsEditorRulerShowTrue" >true </input>
+                                          <input type="radio" name="prefsEditorRulerShow" id="prefsEditorRulerShowFalse">false</input></td></tr>
+      <tr><th>Editor Ruler Column</th><td><input type="text" id="prefsEditorRulerColumn"></input></td></tr>
+    </tbody></table>
+  </div>
+</body>
+</html>

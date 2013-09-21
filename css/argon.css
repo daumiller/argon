@@ -1,0 +1,157 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700);
+body {
+  margin: 0px;
+  font-family: 'Source Sans Pro', sans-serif !important;
+}
+
+#argonMenu {
+  position  : absolute;
+  left      : 0px;
+  right     : 0px;
+  height    : 24px;
+  font-size : 15px;
+}
+
+#argonWorkspace {
+  position : absolute;
+  padding:0px; margin:0px;
+  background-color:#2F3129;
+}
+
+#argonEditor {
+  position : absolute;
+}
+
+.argonMenuList {
+  padding:0px; margin:0px;
+  background-color:#444444;
+}
+.argonMenuList li {
+  list-style-type : none;
+  display         : inline-block;
+  line-height     : 24px;
+  vertical-align  : middle;
+  cursor          : pointer;
+  padding         : 0px 16px 0px 16px;
+  margin          : 2px  0px 2px  0px;
+  border-right    : 1px solid #383838;
+}
+.argonMenuList li:hover { background-color : #333333; }
+
+.argonMenuFloat {
+  padding:0px; margin:0px;
+  background-color: #444444;
+  position        : absolute;
+  display         : none;
+  z-index         : 96;
+  font-size       : 12px;
+}
+.argonMenuFloat li {
+  list-style-type : none;
+  height          : 20px;
+  line-height     : 20px;
+  vertical-align  : middle;
+  cursor          : pointer;
+  padding         : 2px 16px 2px 16px;
+}
+.argonMenuFloat li:hover { background-color : #333333; }
+
+.argonMenuChecked {
+  background-color : #333333;
+  font-weight      : bold;
+}
+
+#argonWorkspaceContent {
+  height   : 100%;
+  position : relative;
+}
+
+#argonWorkspaceCollapser {
+  width    : 16px;
+  height   : 100%;
+  top      : 0px;
+  position : absolute;
+  cursor   : pointer;
+  background-image: url("/css/jquery-ui/images/ui-bg_diagonals-thick_20_666666_40x40.png");
+}
+
+#argonWorkspaceList {
+  padding    : 0px;
+  text-align : center;
+}
+#argonWorkspaceList li {
+  list-style-type  : none;
+  display          : inline-block;
+  line-height      : 16px;
+  vertical-align   : middle;
+  cursor           : pointer;
+  border-radius    : 4px;
+  border           : 1px solid #222222;
+  padding          : 4px;
+  width            : 90%;
+  margin-bottom    : 4px;
+  background-color : #444444;
+}
+#argonWorkspaceList li:hover      { background-color : #333333; }
+#argonWorkspaceList li.activeFile { background-color : #664444; }
+
+#argonFileTable {
+  font-family   : 'Source Sans Pro', sans-serif;
+  font-size     : 14px;
+  border-radius : 6px;
+  border        : 1px solid #222222;
+  min-height    : 64px;
+  width         : 100%;
+  padding       : 6px;
+  margin-bottom : 6px;
+  margin-top    : -14px;
+  color            : #FFFFFF;
+  background-color : #FFFFFF;
+}
+
+#argonFileName {
+  width      : 100%;
+  text-align : center;
+  font-size  : 14px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.argonFileListItem {
+  cursor : pointer;
+  color  : #000000;
+  line-height     : 16px;
+  vertical-align  : top;
+}
+
+#argonFileCrumbs {
+  padding    : 0px;
+  margin-top : -4px;
+}
+#argonFileCrumbs li {
+  list-style-type  : none;
+  display          : inline-block;
+  line-height      : 16px;
+  vertical-align   : middle;
+  cursor           : pointer;
+  padding          : 2px;
+  margin           : 2px 6px 2px 0px;
+  border-radius    : 4px;
+  border           : 1px solid #222222;
+  min-width        : 16px;
+  text-align       : center;
+  font-size        : 14px;
+  background-color :#444444;
+  color            :#8888FF;
+}
+
+#argonFileCrumbs li:hover { background-color : #333333; }
+
+#argonPrefsTable                   { width:100%; }
+#argonPrefsTable tbody tr th       { font-size: 14px; text-align: left;  }
+#argonPrefsTable tbody tr td       { font-size: 14px; text-align: right; }
+#argonPrefsTable tbody tr td input { text-align:center; }
+
+/* jQuery UI - Dialog Overrides */
+.jqui-no-close .ui-dialog-titlebar-close { display   : none;  }
+.jqui-no-close .ui-dialog-buttonpane     { padding   : 0px;   }
+.jqui-no-close .ui-widget                { font-size : 1.0em; }
