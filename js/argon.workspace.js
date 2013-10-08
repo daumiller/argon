@@ -49,7 +49,7 @@ argon.workspace.workOpen_parse = function(content, workFile){
 
 argon.workspace.workSave = function(){
   if(argon.workspace.workFile != null)
-    argon.workspace.workSave_path(argon.workspace.workSave_path(argon.workspace.workFile));
+    argon.workspace.workSave_path(argon.workspace.workFile);
   else
     argon.fileDialog.show("Save Workspace", function(name,path){ argon.workspace.workSave_path(path); });
 };

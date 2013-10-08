@@ -9,7 +9,7 @@ argon.fileDialog.init = function(){
     });
 };
 
-argon.fileDialog.show = function(title, success){
+argon.fileDialog.show = function(title, success, cancelled){
   var dir = argon.fileDialog.directory;
   document.getElementById("argonFileName").value = "";
   argon.fileDialog.setDirectory(dir, function(){
@@ -17,7 +17,7 @@ argon.fileDialog.show = function(title, success){
       title   : title,
       buttons : [
         { text: "OK"    , click:function(){ argon.fileDialog.commit(success); $(this).dialog("close"); } },
-        { text: "Cancel", click:function(){                                   $(this).dialog("close"); } }
+        { text: "Cancel", click:function(){ if(cancelled) cancelled();        $(this).dialog("close"); } }
       ]
     }).dialog("open");
   });

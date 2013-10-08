@@ -4,6 +4,7 @@ use CGI;
 use JSON;
 use File::Slurp;
 use File::Path 'remove_tree';
+use MIME::Base64;
 
 my $relativeRoot = "/var/www.argon";
 my $preferences  = $relativeRoot . "/preferences.json";
@@ -23,6 +24,7 @@ sub argonHelper {
   fsMakeDir()   if($q eq 'fs-mkdir');
   fsRead()      if($q eq 'fs-read');
   fsWrite()     if($q eq 'fs-write');
+  fsWriteB64()  if($q eq 'fs-writeb64');
   perlCompile() if($q eq 'perlcomp');
   perlRun()     if($q eq 'perlrun');
 
@@ -115,6 +117,24 @@ sub fsWrite {
   my $path = $filesystem . $name;
   eval {
     write_file($path, $cgi->param('POSTDATA'));
+    1;
+  } or do {
+    my $err = $@;
+    objError("Error writing to \"$name\" ($err).");
+  };
+  objSuccess();
+}
+
+sub fsWriteB64 {
+  my $name = anyParam('path');
+  four04() if(!defined $name);
+  four04() if(!defined $cgi->param('POSTDATA'));
+  my $path = $filesystem . $name;
+  my $data = $cgi->param('POSTDATA');
+  $data = substr($data, index($data, ',')+1); # read past first comma
+  $data = decode_base64($data);               # decode
+  eval {
+    write_file($path, $data);
     1;
   } or do {
     my $err = $@;

@@ -25,7 +25,9 @@ argon.menu.init = function(){
   $(mnuFile[5]).click(function(){argon.menu.file_rename();});
   $(mnuFile[6]).click(function(){argon.menu.file_delete();});
   $(mnuFile[7]).click(function(){argon.menu.file_create_directory();});
-  $(mnuFile[8]).click(function(){argon.menu.file_delete_directory();});
+  $(mnuFile[8]).click(function(){argon.menu.file_delete_path();});
+  $(mnuFile[9]).click(function(){argon.menu.file_upload();});
+  $(mnuFile[10]).click(function(){argon.menu.file_download();});
   var mnuLang = $("li", "#argonMenuLanguage");
   $(mnuLang).click(argon.menu.language_click);
   var mnuDebug = $("li", "#argonMenuDebug");
@@ -181,17 +183,55 @@ argon.menu.file_create_directory = function(){
   });
 };
 
-argon.menu.file_delete_directory = function(){
-  argon.fileDialog.show("Delete Directory", function(name,path){
+argon.menu.file_delete_path = function(){
+  argon.fileDialog.show("Delete Path", function(name,path){
     if(path.endsWith('/')) path = path.substring(0, path.length-1);
     path = path.trim(); if(path.length == 0) { alert("Not deleting root directory..."); return; }
-    if(!confirm("Really delete directory \"" + path + "\" (and all of its contents)?")) return;
+    if(!confirm("Really delete path \"" + path + "\" (and all of its contents)?")) return;
     $.ajax({ type:"GET", url:"/pl/argon.pl?q=fs-rm&path=" + encodeURIComponent(path) })
-     .fail(function(a,b,err){ alert("Error deleting directory!\n(" + err + ')'); })
+     .fail(function(a,b,err){ alert("Error deleting path!\n(" + err + ')'); })
      .done(function(content){
        argon.fileDialog.directory = '/';
        if(content.beginsWith("{\"error\":\"")){ argon.menu.showServerError(content); return; }
      });
+  });
+};
+
+argon.menu.upload_reader = new FileReader();
+
+argon.menu.file_upload = function(){
+  var elFile = $("#argonFileFile")[0];
+  $("#argonFileName").hide();
+  $("#argonFileFile").show();
+  
+  argon.fileDialog.show("Upload File", function(name,path){
+    if(!elFile.files[0])    { alert("No file selected to upload..."); return; }
+    if(!path.endsWith('/')) { alert("Please choose directory."); return; }
+    argon.menu.upload_filename = elFile.files[0].name;
+    argon.menu.upload_path     = path;
+    argon.menu.upload_reader.readAsDataURL(elFile.files[0]);
+    $("#argonFileFile").hide(); $("#argonFileName").show();
+  }, function(){ $("#argonFileFile").hide(); $("#argonFileName").show(); });
+};
+
+argon.menu.upload_reader.onload = function(e){
+  var filepath = argon.menu.upload_path + argon.menu.upload_filename;
+  $.ajax({
+    type : "POST",
+    url  : "/pl/argon.pl?q=fs-writeb64&path=" + encodeURIComponent(filepath),
+    data : e.target.result,
+    contentType : "text/plain; charset=UTF-8"
+  }).fail(function(){alert("Error uploading file \"" + filename + "\"!");})
+    .done(function(content){
+      if(content.beginsWith("{\"error\":\"")){ argon.menu.showServerError(content); return; }
+      else alert("Upload complete!");
+    });
+};
+
+argon.menu.file_download = function(){
+  argon.fileDialog.show("Download File", function(name,path){
+    if(path.endsWith('/')) { alert("Please select a file."); return; }
+    window.open("/fs" + path);
   });
 };
 
